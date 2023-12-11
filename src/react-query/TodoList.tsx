@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { useTodo } from './hooks/useTodo'
 
 const TodoList = () => {

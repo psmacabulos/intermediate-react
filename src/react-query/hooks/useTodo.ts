@@ -15,5 +15,6 @@ export const useTodo = () => {
   return useQuery({
     queryKey: ['todos'],
     queryFn: getTodos,
+    staleTime: 10 * 1000,
   })
 }
