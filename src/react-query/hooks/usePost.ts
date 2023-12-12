@@ -15,16 +15,14 @@ interface PostQuery {
 const usePost = (query: PostQuery) => {
   return useInfiniteQuery<Post[]>({
     queryKey: ['posts'],
-    initialPageParam: 1,
     queryFn: ({ pageParam }) =>
       axios
-        .get<Post[]>(`https://jsonplaceholder.typicode.com/posts/`, {
-          params: {
-            _start: (pageParam - 1) * query.pageSize,
-            _limit: query.pageSize,
-          },
-        })
+        .get<Post[]>(
+          `https://jsonplaceholder.typicode.com/posts/?_start=${pageParam}&_limit=${query.pageSize}`
+        )
         .then(res => res.data),
+    initialPageParam: 1,
+
     placeholderData: keepPreviousData,
     getNextPageParam: (lastPage, allPages) =>
       lastPage.length > 0 ? allPages.length + 1 : undefined,
