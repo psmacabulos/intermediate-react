@@ -21,7 +21,7 @@ const PostList = () => {
           <ul className='list-group'>
             {page.map(post => (
               <li key={post.id} className='list-group-item'>
-                {post.title}
+                {post.id}
               </li>
             ))}
           </ul>
